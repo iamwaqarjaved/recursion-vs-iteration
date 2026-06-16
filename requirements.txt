@@ -1,0 +1,9 @@
+# No third-party packages required.
+# All examples use Python standard library only:
+#
+#   os, sys, time, threading, functools (lru_cache), tracemalloc
+#
+# Python >= 3.10 required (uses list[T] type hints).
+#
+# To verify your version:
+#   python3 --version
