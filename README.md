@@ -597,4 +597,4 @@ MIT — free to use, share, adapt, and teach with.
 ---
 
 *Python 3.10+ · Standard library only · No pip installs required*  
-*Waqar Javed · Atlantis University · CS Module 5*
+*Auther: Waqar Javed*
