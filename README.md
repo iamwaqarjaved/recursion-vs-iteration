@@ -132,6 +132,18 @@ python3 examples/call_stack_and_tail_recursion.py
 python3 examples/performance_comparison.py   # takes ~15s
 ```
 
+### Confirmed running on macOS (Python 3.13.3)
+
+Both examples tested locally — output matches the code exactly.
+
+**`recursive_examples.py`** — all 5 recursive problems with correct results:
+
+![recursive_examples.py running in terminal](screenshots/run_recursive_examples.png)
+
+**`performance_comparison.py`** — full benchmark table including the `CRASH` at sum n=1000:
+
+![performance_comparison.py running in terminal](screenshots/run_performance_comparison.png)
+
 ---
 
 ## Part 1 — Clearly Recursive Problems
@@ -166,6 +178,8 @@ def inorder(node):
 ```
 1. BST in-order traversal: [1, 3, 4, 5, 6, 7, 8]
 ```
+
+> 📸 See `screenshots/run_recursive_examples.png` for all 5 problems running together.
 
 ### Example: Merge Sort
 
@@ -435,33 +449,35 @@ sys.setrecursionlimit(5000)   # use only as a temporary measure
 
 > 📄 **File:** `examples/performance_comparison.py`
 
-All times in **microseconds (µs)**, averaged over 500 runs. Run locally to get your machine's numbers.
+All times in **microseconds (µs)**, averaged over 500 runs. Screenshot below is a real local run on macOS Python 3.13.3 — your numbers will differ slightly by machine, but the **ratios** and the `CRASH` are consistent.
+
+![performance_comparison.py — real terminal output](screenshots/run_performance_comparison.png)
 
 ```
 ── Factorial ─────────────────────────────────────────────
-  n=10    recursive=   0.5 µs   iterative=   0.4 µs   ratio= 1.5x  [iter]
-  n=100   recursive=   7.1 µs   iterative=   4.6 µs   ratio= 1.5x  [iter]
-  n=1000  recursive= 291.0 µs   iterative= 192.5 µs   ratio= 1.5x  [iter]
+  n=10    recursive=   0.8 µs   iterative=   0.4 µs   ratio= 2.0x  [iter]
+  n=100   recursive=  11.3 µs   iterative=   4.4 µs   ratio= 2.6x  [iter]
+  n=1000  recursive= 346.3 µs   iterative= 266.1 µs   ratio= 1.3x  [iter]
 
 ── Fibonacci (memoized recursive vs iterative) ───────────
   n=10    recursive=   0.0 µs   iterative=   0.3 µs   ratio= 0.1x  [rec ] ← cache hit
-  n=100   recursive=   0.0 µs   iterative=   3.4 µs   ratio= 0.0x  [rec ] ← cache hit
-  n=1000  recursive=   0.1 µs   iterative=  46.9 µs   ratio= 0.0x  [rec ] ← cache hit
+  n=100   recursive=   0.0 µs   iterative=   2.4 µs   ratio= 0.0x  [rec ] ← cache hit
+  n=1000  recursive=   0.0 µs   iterative=  32.6 µs   ratio= 0.0x  [rec ] ← cache hit
 
 ── Sum a list ────────────────────────────────────────────
-  n=10    recursive=   2.1 µs   iterative=   0.4 µs   ratio= 5.3x  [iter]
-  n=100   recursive=  18.3 µs   iterative=   2.0 µs   ratio= 9.1x  [iter]
-  n=1000  recursive=  CRASH     iterative=  24.8 µs   ratio=  n/a  [iter]
+  n=10    recursive=   1.0 µs   iterative=   0.2 µs   ratio= 4.4x  [iter]
+  n=100   recursive=  19.3 µs   iterative=   2.0 µs   ratio= 9.8x  [iter]
+  n=1000  recursive=  CRASH     iterative=  20.2 µs   ratio=  n/a  [iter]  ← RecursionError
 
 ── Flatten nested list (depth=3) ─────────────────────────
-  n=10    recursive=   3.1 µs   iterative=   4.0 µs   ratio= 0.8x  [rec ]
-  n=100   recursive=  15.1 µs   iterative=  10.8 µs   ratio= 1.4x  [iter]
-  n=1000  recursive= 142.3 µs   iterative=  76.7 µs   ratio= 1.9x  [iter]
+  n=10    recursive=   2.5 µs   iterative=   3.3 µs   ratio= 0.8x  [rec ]
+  n=100   recursive=  11.6 µs   iterative=  11.6 µs   ratio= 1.0x  [iter]
+  n=1000  recursive= 102.6 µs   iterative=  89.4 µs   ratio= 1.1x  [iter]
 
 ── Merge sort: recursive impl vs Python sorted() ─────────
-  n=10    recursive=   6.6 µs   iterative=   0.3 µs   ratio=22.8x  [iter]
-  n=100   recursive= 100.4 µs   iterative=   2.6 µs   ratio=38.9x  [iter]
-  n=1000  recursive=1420.7 µs   iterative=  56.6 µs   ratio=25.1x  [iter]
+  n=10    recursive=   6.2 µs   iterative=   0.2 µs   ratio=28.5x  [iter]
+  n=100   recursive=  97.6 µs   iterative=   3.0 µs   ratio=32.3x  [iter]
+  n=1000  recursive=1375.3 µs   iterative=  45.3 µs   ratio=30.3x  [iter]
 ```
 
 ### What these numbers mean
